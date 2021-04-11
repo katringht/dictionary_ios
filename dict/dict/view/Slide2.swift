@@ -1,15 +1,14 @@
 //
-//  Slide.swift
+//  Slide2.swift
 //  dict
 //
-//  Created by Ekaterina Tarasova on 09.04.2021.
+//  Created by Ekaterina Tarasova on 11.04.2021.
 //
 
 import UIKit
 
-class Slide: UIView {
+class Slide2: UIView {
 
-    @IBOutlet var label: UILabel!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
