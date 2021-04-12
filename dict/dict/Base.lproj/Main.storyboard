@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0r7-PT-u1w">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r7-PT-u1w">
                                 <rect key="frame" x="0.0" y="30" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="My dictionary" id="vgn-Id-aay">
@@ -45,53 +45,50 @@
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8dr-hS-xFV">
                                 <rect key="frame" x="0.0" y="74" width="414" height="822"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="5zV-pP-hlg">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="5zV-pP-hlg">
                                     <size key="itemSize" width="170" height="130"/>
-                                    <size key="estimatedItemSize" width="169" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="10"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="HJT-UB-gaz" customClass="CategoriesCell" customModule="dict" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="10" width="170" height="130"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="124"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PnV-jc-e51">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="130"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sheet" translatesAutoresizingMaskIntoConstraints="NO" id="cPy-Cu-6TK">
-                                                    <rect key="frame" x="120" y="80" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="8Tm-LW-S5K"/>
-                                                        <constraint firstAttribute="height" constant="50" id="mHm-2f-has"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3et-pA-WoI">
-                                                    <rect key="frame" x="10" y="86" width="100" height="34"/>
+                                                    <rect key="frame" x="10" y="80" width="140" height="34"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="MIE-hX-QjA"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="MIE-hX-QjA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="30"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-nQ-r4f">
+                                                    <rect key="frame" x="141" y="10" width="19" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="ellipsis" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cPy-Cu-6TK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3et-pA-WoI" secondAttribute="trailing" constant="8" symbolic="YES" id="1v3-Jo-FqZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="cPy-Cu-6TK" secondAttribute="trailing" id="NJu-bz-RSz"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vqa-nQ-r4f" secondAttribute="trailing" constant="10" id="HAt-at-XWs"/>
+                                                <constraint firstAttribute="trailing" secondItem="3et-pA-WoI" secondAttribute="trailing" constant="20" symbolic="YES" id="PcI-Uu-RAy"/>
+                                                <constraint firstItem="3et-pA-WoI" firstAttribute="top" relation="lessThanOrEqual" secondItem="Vqa-nQ-r4f" secondAttribute="bottom" constant="44" id="ReI-To-Rnt"/>
+                                                <constraint firstItem="Vqa-nQ-r4f" firstAttribute="top" secondItem="PnV-jc-e51" secondAttribute="top" constant="10" id="Urm-3g-CJp"/>
                                                 <constraint firstItem="3et-pA-WoI" firstAttribute="leading" secondItem="PnV-jc-e51" secondAttribute="leading" constant="10" id="YQZ-SB-n5Z"/>
-                                                <constraint firstAttribute="bottom" secondItem="cPy-Cu-6TK" secondAttribute="bottom" id="YfX-Pv-QRb"/>
                                                 <constraint firstAttribute="bottom" secondItem="3et-pA-WoI" secondAttribute="bottom" constant="10" id="e0W-Qz-3b8"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="Color1"/>
-                                        <size key="customSize" width="170" height="130"/>
                                         <connections>
                                             <outlet property="cell" destination="PnV-jc-e51" id="KqU-1q-jYb"/>
                                             <outlet property="label" destination="3et-pA-WoI" id="Qde-W9-ifa"/>
-                                            <outlet property="sheetImg" destination="cPy-Cu-6TK" id="StD-SM-fMA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -137,17 +134,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="sheet" width="155" height="153.5"/>
         <namedColor name="Color1">
-            <color red="0.80392158030000005" green="0.92156863209999995" blue="0.89803922179999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42899999022483826" green="0.72200000286102295" blue="0.55000001192092896" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

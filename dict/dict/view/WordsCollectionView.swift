@@ -21,12 +21,12 @@ class WordsCollectionView: UIViewController {
         collectionView.dataSource = self
         
         self.navBar.topItem?.title = "My dictionary"
-//        self.navBar.topItem?.
         
-        let navTitleFont = UIFont(name: "Courier New", size: 20)
-        self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any]
         
-        navBar.barTintColor = .white
+        let navTitleFont = UIFont(name: "Courier New", size: 22)
+        self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any, NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        navBar.barTintColor =  .white
     }
 }
 
@@ -50,5 +50,29 @@ extension UIViewController: UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return caterories.count
     }
+}
+
+extension UIViewController: UICollectionViewDelegateFlowLayout{
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let collectionViewCellSize = collectionView.frame.size.width / 2 // to show 2 cells in a row
+
+        return CGSize(width: collectionViewCellSize, height: collectionViewCellSize)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
+    
 }
 
