@@ -8,11 +8,11 @@
 import UIKit
 
 struct Category {
-    let label: String
-    let color: UIColor
+    var label: String
+    var color: UIColor
 }
 
-let caterories: [Category] = [
+var caterories: [Category] = [
     Category(label: "verb", color: (UIColor(named: "Color1"))!),
     Category(label: "nouns", color: (UIColor(named: "Color2"))!),
     Category(label: "adj", color: (UIColor(named: "Color3"))!),
