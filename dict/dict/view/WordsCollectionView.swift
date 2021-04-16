@@ -12,6 +12,18 @@ class WordsCollectionView: UIViewController {
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var collectionView: UICollectionView!
     
+    private lazy var alertView: CustomAlert = {
+        let alertView = Bundle.main.loadNibNamed("CustomAlert", owner: self, options: nil)?.first as? CustomAlert
+        return alertView!
+    }()
+    
+    let blurEffect: UIVisualEffectView = {
+        let blurEff = UIBlurEffect(style: .light)
+        let view = UIVisualEffectView(effect: blurEff)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,27 +37,74 @@ class WordsCollectionView: UIViewController {
         self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any, NSAttributedString.Key.foregroundColor: UIColor.black]
         
         navBar.barTintColor =  .white
+        
+        setupBlurEffect()
+    }
+
+// MARK: Alert additions
+    func setupBlurEffect() {
+        view.addSubview(blurEffect)
+        blurEffect.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        blurEffect.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        blurEffect.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        blurEffect.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        blurEffect.alpha = 0
     }
     
+    func animations() {
+        alertView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        alertView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.blurEffect.alpha = 1
+            self.alertView.alpha = 1
+            self.alertView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func animationsOut() {
+        UIView.animate(withDuration: 0.3) {
+            self.blurEffect.alpha = 0
+            self.alertView.alpha = 0
+        } completion: { (_) in
+            self.alertView.removeFromSuperview()
+        }
+
+    }
+    
+    func setAlert() {
+        view.addSubview(alertView)
+        alertView.center = view.center
+        alertView.alertCancelBtn.addTarget(self, action: #selector(closeAlert), for: .touchUpInside)
+        alertView.alertOkBtn.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+    }
+    
+    @objc func closeAlert() {
+        alertView.removeFromSuperview()
+        animationsOut()
+    }
+    
+    @objc func addCategory() {
+        var new = Category(label: "new", color: (UIColor(named: "Color1"))!)
+        guard let newLabel = alertView.alertField.text else {return}
+        new.label = newLabel
+        caterories.append(new)
+        self.collectionView.reloadData()
+        alertView.removeFromSuperview()
+        
+        animationsOut()
+    }
+    
+// MARK: Buttons from view
     
     @IBAction func rightBarBtn(_ sender: Any) {
         print("tapped")
-        let ac = UIAlertController(title: "Add category", message: "Choose name and color", preferredStyle: .alert)
-        ac.addTextField()
-
-        ac.addAction(UIAlertAction(title: "OK", style: .default){ [weak self, weak ac] _ in
-            guard let newLabel = ac?.textFields?[0].text else { return }
-            
-            var new = Category(label: "new", color: (UIColor(named: "Color1"))!)
-            new.label = newLabel
-            caterories.append(new)
-            self?.collectionView.reloadData()
-        })
-        
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
+        setAlert()
+        animations()
     }
 }
+
+// MARK: Collection View Extension
 
 extension UIViewController: UICollectionViewDelegate{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -69,27 +128,4 @@ extension UIViewController: UICollectionViewDataSource{
     }
 }
 
-//extension UIViewController: UICollectionViewDelegateFlowLayout{
-//    
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let collectionViewCellSize = collectionView.frame.size.width / 2
-//
-//        return CGSize(width: collectionViewCellSize, height: collectionViewCellSize)
-//    }
-//    
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-//
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 20
-//    }
-//    
-//    
-//}
 
