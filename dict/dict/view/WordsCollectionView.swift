@@ -30,18 +30,20 @@ class WordsCollectionView: UIViewController {
     
     @IBAction func rightBarBtn(_ sender: Any) {
         print("tapped")
-//        let ac = UIAlertController(title: "Add category", message: nil, preferredStyle: .alert)
-//        ac.addTextField()
-//
-//        ac.addAction(UIAlertAction(title: "OK", style: .default))
-//        present(ac, animated: true)
-        let new = Category(label: "new", color: (UIColor(named: "Color1"))!)
-        caterories.append(new)
-        let indexPath = IndexPath(item: caterories.count - 1, section: 0)
-        collectionView.insertItems(at: [indexPath])
-        collectionView.reloadData()
+        let ac = UIAlertController(title: "Add category", message: "Choose name and color", preferredStyle: .alert)
+        ac.addTextField()
+
+        ac.addAction(UIAlertAction(title: "OK", style: .default){ [weak self, weak ac] _ in
+            guard let newLabel = ac?.textFields?[0].text else { return }
+            
+            var new = Category(label: "new", color: (UIColor(named: "Color1"))!)
+            new.label = newLabel
+            caterories.append(new)
+            self?.collectionView.reloadData()
+        })
         
-        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 }
 
