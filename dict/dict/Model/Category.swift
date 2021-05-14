@@ -13,9 +13,9 @@ struct Category {
 }
 
 var caterories: [Category] = [
-    Category(label: "verb", color: (UIColor(named: "Color1"))!),
-    Category(label: "nouns", color: (UIColor(named: "Color2"))!),
-    Category(label: "adj", color: (UIColor(named: "Color3"))!),
-    Category(label: "other", color: (UIColor(named: "Color5"))!),
-    Category(label: "moreeeee", color: (UIColor(named: "Color4"))!),
+    Category(label: "verb", color: (UIColor(named: "Pink"))!),
+    Category(label: "nouns", color: (UIColor(named: "Yellow"))!),
+    Category(label: "adj", color: (UIColor(named: "Blue"))!),
+//    Category(label: "other", color: (UIColor(named: "Orange"))!),
+//    Category(label: "moreeeee", color: (UIColor(named: "Yellow"))!),
 ]

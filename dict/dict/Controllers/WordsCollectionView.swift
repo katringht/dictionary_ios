@@ -85,13 +85,34 @@ class WordsCollectionView: UIViewController {
     }
     
     @objc func addCategory() {
-        var new = Category(label: "new", color: (UIColor(named: "Color1"))!)
+        var new = Category(label: "new", color: (UIColor(named: "Orange"))!)
         guard let newLabel = alertView.alertField.text else {return}
+        
+        for index in 0..<caterories.count {
+//            new.color = ((index % 2) != 0) ? (UIColor(named: "Yellow"))! : (UIColor(named: "Blue"))!
+            if index % 2 == 0 {
+                if index % 4 == 0 {
+                    new.color = (UIColor(named: "Blue"))!
+                }
+                else {
+                    new.color = (UIColor(named: "Purple"))!
+                }
+            }
+            else if index % 3 == 0{
+                new.color = (UIColor(named: "Pink"))!
+            }
+            else {
+                new.color = (UIColor(named: "Yellow"))!
+            }
+        }
         new.label = newLabel
         caterories.append(new)
+        
         self.collectionView.reloadData()
         alertView.removeFromSuperview()
         
+        alertView.alertField.text = ""
+
         animationsOut()
     }
     
@@ -117,8 +138,8 @@ extension UIViewController: UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoriesCell
-        
         cell.setup(with: caterories[indexPath.row])
+        
         
         return cell
     }

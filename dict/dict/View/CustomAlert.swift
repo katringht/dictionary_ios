@@ -14,13 +14,6 @@ class CustomAlert: UIView {
     @IBOutlet var alertbackground: UIView!
     @IBOutlet var alertField: UITextField!
     
-    
-    @IBOutlet var greenAlertBtn: UIButton!
-    @IBOutlet var purpleAlertBtn: UIButton!
-    @IBOutlet var pinkAlertBtn: UIButton!
-    @IBOutlet var orangeAlertBtn: UIButton!
-    @IBOutlet var blackAlertBtn: UIButton!
-    
     func set(title: String) {
         alertTitle.text = title
     }
@@ -31,18 +24,14 @@ class CustomAlert: UIView {
         super.awakeFromNib()
         
         alertbackground.layer.cornerRadius = cornerRadius
-        
-        greenAlertBtn.selectedButtonStyle()
-        purpleAlertBtn.deselectedButtonStyle()
-        pinkAlertBtn.deselectedButtonStyle()
-        orangeAlertBtn.deselectedButtonStyle()
-        blackAlertBtn.deselectedButtonStyle()
+    
         
     }
     @IBAction func cancel(_ sender: Any) {
+        alertField.text = ""
     }
     
     @IBAction func addBtn(_ sender: Any) {
-        
     }
+
 }

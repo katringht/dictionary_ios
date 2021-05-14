@@ -10,14 +10,14 @@ import UIKit
 extension UIButton {
     
     func selectedButtonStyle() {
-        self.layer.borderWidth = 2
-        self.layer.borderColor = UIColor.darkGray.cgColor
-        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 5
+        self.layer.borderColor = UIColor.systemGray.cgColor
+        self.layer.cornerRadius = 15
     }
     
     func deselectedButtonStyle() {
-//        self.layer.borderWidth = 1
-//        self.layer.borderColor = UIColor.lightGray.cgColor
-        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 0
+        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.cornerRadius = 15
     }
 }
