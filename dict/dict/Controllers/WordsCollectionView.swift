@@ -126,12 +126,13 @@ class WordsCollectionView: UIViewController {
 }
 
 // MARK: Collection View Extension
+//var c = [Category]()
 
 extension UIViewController: UICollectionViewDelegate{
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        print("u tapped me")
+//        let c = caterories[indexPath.row].label
     }
 }
 extension UIViewController: UICollectionViewDataSource{
@@ -139,7 +140,6 @@ extension UIViewController: UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoriesCell
         cell.setup(with: caterories[indexPath.row])
-        
         
         return cell
     }

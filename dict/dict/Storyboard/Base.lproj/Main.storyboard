@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dVp-Xc-HaX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9N-a8-abx">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -18,7 +19,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNe-SZ-qcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1157.9710144927537" y="116.51785714285714"/>
+            <point key="canvasLocation" x="2068.1159420289855" y="116.51785714285714"/>
         </scene>
         <!--Words Collection View-->
         <scene sceneID="4H7-Lf-pWb">
@@ -88,6 +89,7 @@
                                         <connections>
                                             <outlet property="cell" destination="Bon-eb-Gec" id="XSa-Ld-TWr"/>
                                             <outlet property="label" destination="iSa-8q-gvQ" id="frE-ui-JWS"/>
+                                            <segue destination="iuh-7u-iCt" kind="show" id="bcW-SJ-ZcG"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -115,6 +117,49 @@
             </objects>
             <point key="canvasLocation" x="1157.9710144927537" y="801.5625"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="D61-LE-Bf4">
+            <objects>
+                <viewController restorationIdentifier="DetailView" id="iuh-7u-iCt" customClass="DetailViewController" customModule="dict" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NlM-5X-eZ9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDY-II-ISg">
+                                <rect key="frame" x="176.66666666666666" y="0.0" width="60.666666666666657" height="23"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ry8-dH-Hze">
+                                <rect key="frame" x="20" y="0.0" width="15" height="22"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButton:" destination="iuh-7u-iCt" eventType="touchUpInside" id="zeK-lb-bWP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="37p-FE-pR5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XDY-II-ISg" firstAttribute="centerX" secondItem="NlM-5X-eZ9" secondAttribute="centerX" id="Bd5-3k-UQr"/>
+                            <constraint firstItem="XDY-II-ISg" firstAttribute="top" secondItem="37p-FE-pR5" secondAttribute="top" id="KFe-dU-7Vo"/>
+                            <constraint firstItem="ry8-dH-Hze" firstAttribute="leading" secondItem="37p-FE-pR5" secondAttribute="leading" constant="20" id="Siz-Vh-oSU"/>
+                            <constraint firstItem="ry8-dH-Hze" firstAttribute="top" secondItem="37p-FE-pR5" secondAttribute="top" id="j9k-dy-lkQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cvW-ku-nTO"/>
+                    <connections>
+                        <outlet property="categoryLabel" destination="XDY-II-ISg" id="YcG-Ke-NrH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HXA-8f-92O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1158" y="1536"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="3V9-U7-ed5">
             <objects>
@@ -130,8 +175,26 @@
             </objects>
             <point key="canvasLocation" x="2068" y="803"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fkg-X1-oiR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="V9N-a8-abx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kEj-F9-Mfq">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dVp-Xc-HaX" kind="relationship" relationship="rootViewController" id="zZ8-Wh-tDH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aie-kg-fwQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157.9710144927537" y="116.51785714285714"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="Color1">

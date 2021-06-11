@@ -47,7 +47,6 @@ class CategoriesCell: UICollectionViewCell {
     }
     
     @IBAction func changeBtn(_ sender: Any) {
-        
     }
     
 }
