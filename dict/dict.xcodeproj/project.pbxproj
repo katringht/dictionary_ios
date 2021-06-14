@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211243C526779B1D00581E10 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211243C426779B1D00581E10 /* TableViewCell.swift */; };
 		213887522629C39200311841 /* CustomAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213887512629C39200311841 /* CustomAlert.xib */; };
 		213887552629CAB800311841 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213887542629CAB800311841 /* CustomAlert.swift */; };
 		21B3CB8B262315F000BB7F2C /* WordsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B3CB8A262315F000BB7F2C /* WordsCollectionView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		211243C426779B1D00581E10 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		213887512629C39200311841 /* CustomAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlert.xib; sourceTree = "<group>"; };
 		213887542629CAB800311841 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		21B3CB8A262315F000BB7F2C /* WordsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsCollectionView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				21B3CB8E26231E9E00BB7F2C /* CategoriesCell.swift */,
 				213887542629CAB800311841 /* CustomAlert.swift */,
+				211243C426779B1D00581E10 /* TableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				21C991862620C4A0009CC267 /* PageViewController.swift in Sources */,
 				21C9918C2620C4A0009CC267 /* dict.xcdatamodeld in Sources */,
 				21B3CB8F26231E9E00BB7F2C /* CategoriesCell.swift in Sources */,
+				211243C526779B1D00581E10 /* TableViewCell.swift in Sources */,
 				21C991822620C4A0009CC267 /* AppDelegate.swift in Sources */,
 				21C991842620C4A0009CC267 /* SceneDelegate.swift in Sources */,
 				21B3CB92262359AC00BB7F2C /* Category.swift in Sources */,

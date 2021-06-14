@@ -26,12 +26,9 @@ class WordsCollectionView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.delegate = self
         collectionView.dataSource = self
         
         self.navBar.topItem?.title = "My dictionary"
-        
         
         let navTitleFont = UIFont(name: "Courier New", size: 25)
         self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any, NSAttributedString.Key.foregroundColor: UIColor.black]
@@ -77,6 +74,7 @@ class WordsCollectionView: UIViewController {
         alertView.center = view.center
         alertView.alertCancelBtn.addTarget(self, action: #selector(closeAlert), for: .touchUpInside)
         alertView.alertOkBtn.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
+        
     }
     
     @objc func closeAlert() {
@@ -89,7 +87,6 @@ class WordsCollectionView: UIViewController {
         guard let newLabel = alertView.alertField.text else {return}
         
         for index in 0..<caterories.count {
-//            new.color = ((index % 2) != 0) ? (UIColor(named: "Yellow"))! : (UIColor(named: "Blue"))!
             if index % 2 == 0 {
                 if index % 4 == 0 {
                     new.color = (UIColor(named: "Blue"))!
@@ -105,15 +102,23 @@ class WordsCollectionView: UIViewController {
                 new.color = (UIColor(named: "Yellow"))!
             }
         }
-        new.label = newLabel
-        caterories.append(new)
+        if newLabel.isEmpty {
+            let redPlaceholderText = NSAttributedString(string: "Can't be empty",
+                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            alertView.alertField.attributedPlaceholder = redPlaceholderText
+            
+        } else {
+            new.label = newLabel
+            caterories.append(new)
+            self.collectionView.reloadData()
+            alertView.removeFromSuperview()
+            
+            alertView.alertField.text = ""
+            
+            animationsOut()
+        }
         
-        self.collectionView.reloadData()
-        alertView.removeFromSuperview()
         
-        alertView.alertField.text = ""
-
-        animationsOut()
     }
     
 // MARK: Buttons from view
@@ -123,18 +128,26 @@ class WordsCollectionView: UIViewController {
         setAlert()
         animations()
     }
+
+// MARK: StoryboardSegue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is DetailViewController {
+            if let vc = segue.destination as? DetailViewController{
+                if let path = collectionView?.indexPathsForSelectedItems{
+                    let row = path[0].row
+                    let catLabel = caterories[row].label
+                    let catColor = caterories[row].color
+                    vc.label = catLabel.uppercased()
+                    vc.colorOfSeparator = catColor
+                }
+            }
+        }
+    }
+    
 }
 
 // MARK: Collection View Extension
-//var c = [Category]()
 
-extension UIViewController: UICollectionViewDelegate{
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        
-//        let c = caterories[indexPath.row].label
-    }
-}
 extension UIViewController: UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
