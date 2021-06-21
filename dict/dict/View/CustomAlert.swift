@@ -13,9 +13,16 @@ class CustomAlert: UIView {
     @IBOutlet var alertOkBtn: UIButton!
     @IBOutlet var alertbackground: UIView!
     @IBOutlet var alertField: UITextField!
+    @IBOutlet var alertField2: UITextField!
     
-    func set(title: String) {
+    func set(title: String, quantity: Int) {
         alertTitle.text = title
+        
+        if quantity == 1 {
+            alertField2.isHidden = true
+            
+            alertField.placeholder = "Name"
+        }
     }
     
     var cornerRadius: CGFloat = 15.0

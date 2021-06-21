@@ -13,13 +13,17 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var translateLabel: UILabel!
     @IBOutlet var separatorVertical: UIView!
     
+    func setup(with item: Translation) {
+        englishWordLabel.text = item.word
+        translateLabel.text = item.tranlate
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

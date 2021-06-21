@@ -14,14 +14,8 @@ class WordsCollectionView: UIViewController {
     
     private lazy var alertView: CustomAlert = {
         let alertView = Bundle.main.loadNibNamed("CustomAlert", owner: self, options: nil)?.first as? CustomAlert
+        alertView?.set(title: "Add category", quantity: 1)
         return alertView!
-    }()
-    
-    let blurEffect: UIVisualEffectView = {
-        let blurEff = UIBlurEffect(style: .light)
-        let view = UIVisualEffectView(effect: blurEff)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     override func viewDidLoad() {
@@ -34,41 +28,13 @@ class WordsCollectionView: UIViewController {
         self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any, NSAttributedString.Key.foregroundColor: UIColor.black]
         
         navBar.barTintColor =  .white
-        
-        setupBlurEffect()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupBlurEffect(view: view)
     }
 
 // MARK: Alert additions
-    func setupBlurEffect() {
-        view.addSubview(blurEffect)
-        blurEffect.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        blurEffect.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        blurEffect.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        blurEffect.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        blurEffect.alpha = 0
-    }
-    
-    func animations() {
-        alertView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        alertView.alpha = 0
-        
-        UIView.animate(withDuration: 0.3) {
-            self.blurEffect.alpha = 1
-            self.alertView.alpha = 1
-            self.alertView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    func animationsOut() {
-        UIView.animate(withDuration: 0.3) {
-            self.blurEffect.alpha = 0
-            self.alertView.alpha = 0
-        } completion: { (_) in
-            self.alertView.removeFromSuperview()
-        }
-
-    }
-    
     func setAlert() {
         view.addSubview(alertView)
         alertView.center = view.center
@@ -79,7 +45,7 @@ class WordsCollectionView: UIViewController {
     
     @objc func closeAlert() {
         alertView.removeFromSuperview()
-        animationsOut()
+        animationsOut(alert: alertView)
     }
     
     @objc func addCategory() {
@@ -103,10 +69,7 @@ class WordsCollectionView: UIViewController {
             }
         }
         if newLabel.isEmpty {
-            let redPlaceholderText = NSAttributedString(string: "Can't be empty",
-                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-            alertView.alertField.attributedPlaceholder = redPlaceholderText
-            
+            //animation
         } else {
             new.label = newLabel
             caterories.append(new)
@@ -115,10 +78,8 @@ class WordsCollectionView: UIViewController {
             
             alertView.alertField.text = ""
             
-            animationsOut()
+            animationsOut(alert: alertView)
         }
-        
-        
     }
     
 // MARK: Buttons from view
@@ -126,7 +87,7 @@ class WordsCollectionView: UIViewController {
     @IBAction func rightBarBtn(_ sender: Any) {
         print("tapped")
         setAlert()
-        animations()
+        animations(alert: alertView)
     }
 
 // MARK: StoryboardSegue
