@@ -23,6 +23,7 @@
 		21C9918E2620C4A1009CC267 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C9918D2620C4A1009CC267 /* Assets.xcassets */; };
 		21C991912620C4A1009CC267 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21C9918F2620C4A1009CC267 /* LaunchScreen.storyboard */; };
 		21D3429426737BBF008D9068 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3429226737BBF008D9068 /* DetailViewController.swift */; };
+		21D54D6F2681D69000E93325 /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D54D6E2681D69000E93325 /* ViewExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		21C991902620C4A1009CC267 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21C991922620C4A1009CC267 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21D3429226737BBF008D9068 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		21D54D6E2681D69000E93325 /* ViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		21C991802620C4A0009CC267 /* dict */ = {
 			isa = PBXGroup;
 			children = (
+				21D54D6D2681D67C00E93325 /* Extentions */,
 				2155ECC826497B0000BA6E71 /* Model */,
 				2155ECC726497AD600BA6E71 /* Controllers */,
 				2155ECC626497AB200BA6E71 /* Storyboard */,
@@ -127,6 +130,14 @@
 				211243C426779B1D00581E10 /* TableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		21D54D6D2681D67C00E93325 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				21D54D6E2681D69000E93325 /* ViewExtention.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +213,7 @@
 			files = (
 				21D3429426737BBF008D9068 /* DetailViewController.swift in Sources */,
 				21B3CB8B262315F000BB7F2C /* WordsCollectionView.swift in Sources */,
+				21D54D6F2681D69000E93325 /* ViewExtention.swift in Sources */,
 				21C991862620C4A0009CC267 /* PageViewController.swift in Sources */,
 				21C9918C2620C4A0009CC267 /* dict.xcdatamodeld in Sources */,
 				21B3CB8F26231E9E00BB7F2C /* CategoriesCell.swift in Sources */,

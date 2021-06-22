@@ -28,6 +28,8 @@ class WordsCollectionView: UIViewController {
         self.navBar.titleTextAttributes = [NSAttributedString.Key.font: navTitleFont as Any, NSAttributedString.Key.foregroundColor: UIColor.black]
         
         navBar.barTintColor =  .white
+        
+        alertView.bindToKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,5 +124,4 @@ extension UIViewController: UICollectionViewDataSource{
         return caterories.count
     }
 }
-
 

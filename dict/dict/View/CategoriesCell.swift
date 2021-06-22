@@ -32,8 +32,6 @@ class CategoriesCell: UICollectionViewCell {
         layer.shadowOpacity = 0.16
         layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
         layer.shadowOffset = CGSize(width: 0, height: 5)
-//        cell.translatesAutoresizingMaskIntoConstraints = false
-//        cell.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width - 40).isActive = true
     }
     
     override func layoutSubviews() {

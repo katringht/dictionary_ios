@@ -28,8 +28,11 @@ class DetailViewController: UIViewController {
         
         tableView.separatorColor = colorOfSeparator
         tableView?.dataSource = self
+        tableView.delegate = self
         
         setupBlurEffect(view: view)
+        
+        alertView.bindToKeyboard()
     }
 
 // MARK: Alert
@@ -92,16 +95,26 @@ extension UIViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordsCell") as! TableViewCell
         cell.setup(with: items[indexPath.row])
         cell.separatorVertical.backgroundColor = tableView.separatorColor
+        
+        let background = UIView()
+        background.backgroundColor = tableView.separatorColor
+        cell.selectedBackgroundView = background
+        
         return cell
     }
-}
-//
-//extension UIViewController: UITableViewDelegate{
-//
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//        ac.addAction(UIAlertAction(title: "Delete", style: .default))
-//        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//    }
     
-//}
+}
+
+extension UIViewController: UITableViewDelegate{
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(ac, animated: true)
+    }
+    
+}
