@@ -71,7 +71,7 @@ class WordsCollectionView: UIViewController {
             }
         }
         if newLabel.isEmpty {
-            //animation
+            alertView.alertField.shakeAnimation()
         } else {
             new.label = newLabel
             caterories.append(new)

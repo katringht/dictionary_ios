@@ -53,8 +53,15 @@ class DetailViewController: UIViewController {
         var newItem = Translation(word: "n", tranlate: "n")
         guard let newWord = alertView.alertField.text, let newTransl = alertView.alertField2.text else {return}
         
-        if newWord.isEmpty || newTransl.isEmpty {
-            //animation
+        
+        //не пришло в голову как убрать это нагромождение
+        if newWord.isEmpty && newTransl.isEmpty {
+            alertView.alertField.shakeAnimation()
+            alertView.alertField2.shakeAnimation()
+        } else if newWord.isEmpty{
+            alertView.alertField.shakeAnimation()
+        } else if newTransl.isEmpty{
+            alertView.alertField2.shakeAnimation()
         } else {
             
             newItem.word = newWord
