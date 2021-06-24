@@ -117,6 +117,49 @@
             </objects>
             <point key="canvasLocation" x="1157.9710144927537" y="801.5625"/>
         </scene>
+        <!--Rules Table View Controller-->
+        <scene sceneID="sXu-fe-XfQ">
+            <objects>
+                <tableViewController storyboardIdentifier="Pink" id="acc-hb-0cm" customClass="RulesTableViewController" customModule="dict" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nED-Fq-fww">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemGray3Color"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RulesCell" rowHeight="243" id="bFE-LB-fSM" customClass="RulesTableViewCell" customModule="dict" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="414" height="243"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bFE-LB-fSM" id="B6Y-EV-t2F">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="243"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="dp2-Lr-igj">
+                                            <rect key="frame" x="0.0" y="11" width="414" height="221"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dp2-Lr-igj" firstAttribute="leading" secondItem="B6Y-EV-t2F" secondAttribute="leadingMargin" constant="-20" id="01Q-ef-paX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="dp2-Lr-igj" secondAttribute="bottom" id="2Vx-ma-GRD"/>
+                                        <constraint firstItem="dp2-Lr-igj" firstAttribute="top" secondItem="B6Y-EV-t2F" secondAttribute="topMargin" id="XXL-yh-8dK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dp2-Lr-igj" secondAttribute="trailing" constant="-20" id="yAb-mB-3py"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ruleImage" destination="dp2-Lr-igj" id="qKp-V7-g3T"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="acc-hb-0cm" id="qrq-FN-HSW"/>
+                            <outlet property="delegate" destination="acc-hb-0cm" id="ADz-3O-G0L"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DET-P6-lp7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2066.666666666667" y="801.5625"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="D61-LE-Bf4">
             <objects>
@@ -232,21 +275,6 @@
             </objects>
             <point key="canvasLocation" x="1157.9710144927537" y="1535.4910714285713"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="3V9-U7-ed5">
-            <objects>
-                <viewController storyboardIdentifier="Pink" id="b0l-MV-cGU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b0Z-aZ-u9B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="fzJ-Ym-Xe4"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NVe-y0-CKJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2068" y="803"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="fkg-X1-oiR">
             <objects>
@@ -266,6 +294,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="382" height="175.33332824707031"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
@@ -278,8 +307,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
