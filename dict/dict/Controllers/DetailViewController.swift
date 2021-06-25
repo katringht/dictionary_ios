@@ -33,6 +33,15 @@ class DetailViewController: UIViewController {
         setupBlurEffect(view: view)
         
         alertView.bindToKeyboard()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+// MARK: Gesture
+    @objc func swipe(){
+        navigationController?.popViewController(animated: true)
     }
 
 // MARK: Alert
