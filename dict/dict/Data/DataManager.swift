@@ -30,13 +30,13 @@ class DataManager {
         return cat
     }
     
-//    func translate(word: String, translate: String, category: Category) -> Translation {
-//        let transl = Translation(context: persistentContainer.viewContext)
-//        transl.word = word
-//        transl.translate = translate
-//        transl.category = category
-//        return transl
-//    }
+    func translate(word: String, translate: String, category: Category) -> Translation {
+        let transl = Translation(context: persistentContainer.viewContext)
+        transl.word = word
+        transl.translate = translate
+        transl.category = category
+        return transl
+    }
     
     //fetching data
     
@@ -83,12 +83,4 @@ final class ColorValueTransformer: NSSecureUnarchiveFromDataTransformer {
         let transformer = ColorValueTransformer()
         ValueTransformer.setValueTransformer(transformer, forName: name)
     }
-}
-
-// просто для теста
-var i: [Transl] = []
-
-struct Transl {
-    var word: String
-    var translate: String
 }

@@ -8,7 +8,7 @@
     <entity name="Translation" representedClassName="Translation" syncable="YES">
         <attribute name="translate" optional="YES" attributeType="String"/>
         <attribute name="word" optional="YES" attributeType="String"/>
-        <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="translation" inverseEntity="Category"/>
+        <relationship name="category" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="translation" inverseEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="167.796875" positionY="-47.05078125" width="128" height="74"/>

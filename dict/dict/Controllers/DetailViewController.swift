@@ -7,14 +7,14 @@
 
 import UIKit
 
-//var items: [Translation] = []
+var items: [Translation] = []
 
 class DetailViewController: UIViewController {
 
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     
-//    var cat: Category?
+    var cat: Category?
     
     var label = "Label"
     var colorOfSeparator = UIColor.black
@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
 //            categoryLabel.text = cat.label
 //            categoryLabel.textColor = cat.color
 //            tableView.separatorColor = cat.color
-//
+//}
         
         tableView.separatorColor = colorOfSeparator
         tableView?.dataSource = self
@@ -68,12 +68,9 @@ class DetailViewController: UIViewController {
     }
     
     @objc func addItem(){
-        var newItem = Transl(word: "d", translate: "d")
         guard let newWord = alertView.alertField.text, let newTransl = alertView.alertField2.text else {return}
 //        guard let cat = cat else {
 //            return}
-//        let newItem = DataManager.shared.translate(word: newWord, translate: newTransl, category: cat)
-        
         //не пришло в голову как убрать это нагромождение
         if newWord.isEmpty && newTransl.isEmpty {
             alertView.alertField.shakeAnimation()
@@ -84,13 +81,13 @@ class DetailViewController: UIViewController {
             alertView.alertField2.shakeAnimation()
         } else {
             
+            let newItem = DataManager.shared.translate(word: newWord, translate: newTransl, category: cat!) // wrong!!!!
             newItem.word = newWord
             newItem.translate = newTransl
-//            items.append(newItem)
-            i.append(newItem)
+            items.append(newItem)
             
             self.tableView.reloadData()
-//            DataManager.shared.save()
+            DataManager.shared.save()
             
             alertView.removeFromSuperview()
             alertView.alertField.text = ""
@@ -116,13 +113,13 @@ class DetailViewController: UIViewController {
 
 extension UIViewController: UITableViewDataSource{
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return i.count
+        return items.count
         
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordsCell") as! TableViewCell
-        cell.setup(with: i[indexPath.row])
+        cell.setup(with: items[indexPath.row])
         cell.separatorVertical.backgroundColor = tableView.separatorColor
         
         let background = UIView()
