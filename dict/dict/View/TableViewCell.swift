@@ -13,11 +13,14 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var translateLabel: UILabel!
     @IBOutlet var separatorVertical: UIView!
     
-    func setup(with item: Translation) {
+//    func setup(with item: Translation) {
+//        englishWordLabel.text = item.word
+//        translateLabel.text = item.translate
+//    }
+    func setup(with item: Transl) {
         englishWordLabel.text = item.word
-        translateLabel.text = item.tranlate
+        translateLabel.text = item.translate
     }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

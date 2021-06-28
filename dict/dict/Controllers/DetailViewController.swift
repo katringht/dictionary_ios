@@ -7,10 +7,14 @@
 
 import UIKit
 
+//var items: [Translation] = []
+
 class DetailViewController: UIViewController {
 
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var tableView: UITableView!
+    
+//    var cat: Category?
     
     var label = "Label"
     var colorOfSeparator = UIColor.black
@@ -25,6 +29,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         categoryLabel.text = label
         categoryLabel.textColor = colorOfSeparator
+//        if let cat = cat {
+//            categoryLabel.text = cat.label
+//            categoryLabel.textColor = cat.color
+//            tableView.separatorColor = cat.color
+//
         
         tableView.separatorColor = colorOfSeparator
         tableView?.dataSource = self
@@ -59,9 +68,11 @@ class DetailViewController: UIViewController {
     }
     
     @objc func addItem(){
-        var newItem = Translation(word: "n", tranlate: "n")
+        var newItem = Transl(word: "d", translate: "d")
         guard let newWord = alertView.alertField.text, let newTransl = alertView.alertField2.text else {return}
-        
+//        guard let cat = cat else {
+//            return}
+//        let newItem = DataManager.shared.translate(word: newWord, translate: newTransl, category: cat)
         
         //не пришло в голову как убрать это нагромождение
         if newWord.isEmpty && newTransl.isEmpty {
@@ -74,14 +85,16 @@ class DetailViewController: UIViewController {
         } else {
             
             newItem.word = newWord
-            newItem.tranlate = newTransl
-            items.append(newItem)
+            newItem.translate = newTransl
+//            items.append(newItem)
+            i.append(newItem)
             
             self.tableView.reloadData()
+//            DataManager.shared.save()
+            
             alertView.removeFromSuperview()
             alertView.alertField.text = ""
             alertView.alertField2.text = ""
-            alertView.alertTitle.textColor = .black
             
             animationsOut(alert: alertView)
             
@@ -103,13 +116,13 @@ class DetailViewController: UIViewController {
 
 extension UIViewController: UITableViewDataSource{
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return i.count
         
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordsCell") as! TableViewCell
-        cell.setup(with: items[indexPath.row])
+        cell.setup(with: i[indexPath.row])
         cell.separatorVertical.backgroundColor = tableView.separatorColor
         
         let background = UIView()

@@ -7,10 +7,13 @@
 
 import UIKit
 
+var categories: [Category] = []
+
 class WordsCollectionView: UIViewController {
 
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var collectionView: UICollectionView!
+    
     
     private lazy var alertView: CustomAlert = {
         let alertView = Bundle.main.loadNibNamed("CustomAlert", owner: self, options: nil)?.first as? CustomAlert
@@ -21,6 +24,9 @@ class WordsCollectionView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        
+        categories = DataManager.shared.fetchRequest()
+        collectionView.reloadData()
         
         self.navBar.topItem?.title = "My dictionary"
         
@@ -51,33 +57,34 @@ class WordsCollectionView: UIViewController {
     }
     
     @objc func addCategory() {
-        var new = Category(label: "new", color: (UIColor(named: "Orange"))!)
         guard let newLabel = alertView.alertField.text else {return}
         
-        for index in 0..<caterories.count {
-            if index % 2 == 0 {
-                if index % 4 == 0 {
-                    new.color = (UIColor(named: "Blue"))!
-                }
-                else {
-                    new.color = (UIColor(named: "Purple"))!
-                }
-            }
-            else if index % 3 == 0{
-                new.color = (UIColor(named: "Pink"))!
-            }
-            else {
-                new.color = (UIColor(named: "Yellow"))!
-            }
-        }
         if newLabel.isEmpty {
             alertView.alertField.shakeAnimation()
         } else {
-            new.label = newLabel
-            caterories.append(new)
+            let category = DataManager.shared.category(title: newLabel, color: (UIColor(named: "Pink"))!)
+            for index in 0..<categories.count {
+                if index % 2 == 0 {
+                    if index % 4 == 0 {
+                        category.color = (UIColor(named: "Yellow"))!
+                    }
+                    else {
+                        category.color = (UIColor(named: "Purple"))!
+                    }
+                }
+                else if index % 3 == 0{
+                    category.color = (UIColor(named: "Pink"))!
+                }
+                else {
+                    category.color = (UIColor(named: "Blue"))!
+                }
+            }
+            categories.append(category)
             self.collectionView.reloadData()
             alertView.removeFromSuperview()
             
+            DataManager.shared.save()
+
             alertView.alertField.text = ""
             
             animationsOut(alert: alertView)
@@ -98,10 +105,10 @@ class WordsCollectionView: UIViewController {
             if let vc = segue.destination as? DetailViewController{
                 if let path = collectionView?.indexPathsForSelectedItems{
                     let row = path[0].row
-                    let catLabel = caterories[row].label
-                    let catColor = caterories[row].color
-                    vc.label = catLabel.uppercased()
-                    vc.colorOfSeparator = catColor
+                    let catLabel = categories[row].label
+                    let catColor = categories[row].color
+                    vc.label = catLabel!.uppercased()
+                    vc.colorOfSeparator = catColor!
                 }
             }
         }
@@ -115,13 +122,12 @@ extension UIViewController: UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoriesCell
-        cell.setup(with: caterories[indexPath.row])
-        
+        cell.setup(with: categories[indexPath.row])
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return caterories.count
+        return categories.count
     }
 }
 
