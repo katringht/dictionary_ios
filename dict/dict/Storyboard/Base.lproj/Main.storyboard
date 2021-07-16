@@ -29,6 +29,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMPTINESS..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tbH-9q-m8p">
+                                <rect key="frame" x="0.0" y="42" width="414" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r7-PT-u1w">
                                 <rect key="frame" x="0.0" y="40" width="414" height="44"/>
                                 <items>
@@ -107,6 +114,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundOfEmptyView" destination="tbH-9q-m8p" id="xct-KW-B28"/>
                         <outlet property="collectionView" destination="a3H-rf-nKY" id="xsw-OJ-kWK"/>
                         <outlet property="navBar" destination="0r7-PT-u1w" id="n66-pz-Z0Q"/>
                     </connections>

@@ -13,6 +13,7 @@ class WordsCollectionView: UIViewController {
     
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var backgroundOfEmptyView: UILabel!
     
     var categories: [Category] = []
     
@@ -85,7 +86,6 @@ class WordsCollectionView: UIViewController {
             DataManager.shared.save()
             
             alertView.alertField.text = ""
-            
             animationsOut(alert: alertView)
         }
     }
@@ -154,6 +154,11 @@ extension WordsCollectionView: UICollectionViewDataSource{
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if categories.isEmpty {
+            collectionView.isHidden = true
+        } else {
+            collectionView.isHidden = false
+        }
         return categories.count
     }
 }
