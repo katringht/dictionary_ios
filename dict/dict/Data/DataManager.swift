@@ -12,6 +12,7 @@ class DataManager {
     // MARK: - Core Data stack
     
     static let shared = DataManager()
+    var currentCatId: Int64!
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "dict")
@@ -50,6 +51,20 @@ class DataManager {
             print("Error fetching")
         }
         return fetchedMyCategiries
+    }
+    
+    func fetchTransl(category: Category) -> [Translation]{
+        let request: NSFetchRequest<Translation> = Translation.fetchRequest()
+        request.predicate = NSPredicate(format: "category = %@", category)
+    
+        var fetchedMyTranslate: [Translation] = []
+        
+        do {
+            fetchedMyTranslate = try persistentContainer.viewContext.fetch(request)
+        } catch {
+            print("Error fetching")
+        }
+        return fetchedMyTranslate
     }
     
     // MARK: - Core Data Saving support

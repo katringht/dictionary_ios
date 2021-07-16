@@ -2,7 +2,7 @@
 //  Category+CoreDataClass.swift
 //  dict
 //
-//  Created by Ekaterina Tarasova on 28.06.2021.
+//  Created by Ekaterina Tarasova on 30.06.2021.
 //
 //
 

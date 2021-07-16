@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="ColorValueTransformer" customClassName="UIColor"/>
-        <attribute name="label" optional="YES" attributeType="String"/>
+        <attribute name="color" attributeType="Transformable" valueTransformerName="ColorValueTransformer" customClassName="UIColor"/>
+        <attribute name="label" attributeType="String"/>
         <relationship name="translation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Translation" inverseName="category" inverseEntity="Translation"/>
     </entity>
     <entity name="Translation" representedClassName="Translation" syncable="YES">
-        <attribute name="translate" optional="YES" attributeType="String"/>
-        <attribute name="word" optional="YES" attributeType="String"/>
+        <attribute name="translate" attributeType="String"/>
+        <attribute name="word" attributeType="String"/>
         <relationship name="category" maxCount="1" deletionRule="Cascade" destinationEntity="Category" inverseName="translation" inverseEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="167.796875" positionY="-47.05078125" width="128" height="74"/>
-        <element name="Translation" positionX="160.0703125" positionY="116.44140625" width="128" height="74"/>
+        <element name="Translation" positionX="160.0703125" positionY="116.44140625" width="128" height="88"/>
     </elements>
 </model>

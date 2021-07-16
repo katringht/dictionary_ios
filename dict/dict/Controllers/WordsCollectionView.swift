@@ -7,13 +7,14 @@
 
 import UIKit
 
-var categories: [Category] = []
+
 
 class WordsCollectionView: UIViewController {
-
+    
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var collectionView: UICollectionView!
     
+    var categories: [Category] = []
     
     private lazy var alertView: CustomAlert = {
         let alertView = Bundle.main.loadNibNamed("CustomAlert", owner: self, options: nil)?.first as? CustomAlert
@@ -41,8 +42,13 @@ class WordsCollectionView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupBlurEffect(view: view)
     }
-
-// MARK: Alert additions
+    
+    func getRandomIdNumber() -> Int64 {
+        return Int64.random(in: 0...10000)
+        
+    }
+    
+    // MARK: Alert additions
     func setAlert() {
         view.addSubview(alertView)
         alertView.center = view.center
@@ -82,43 +88,39 @@ class WordsCollectionView: UIViewController {
             categories.append(category)
             self.collectionView.reloadData()
             alertView.removeFromSuperview()
-            
             DataManager.shared.save()
-
+            
             alertView.alertField.text = ""
             
             animationsOut(alert: alertView)
         }
     }
     
-// MARK: Buttons from view
+    // MARK: Buttons from view
     
     @IBAction func rightBarBtn(_ sender: Any) {
         print("tapped")
         setAlert()
         animations(alert: alertView)
     }
-
-// MARK: StoryboardSegue
+    
+    // MARK: StoryboardSegue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is DetailViewController {
             if let vc = segue.destination as? DetailViewController{
-                if let path = collectionView?.indexPathsForSelectedItems{
-                    let row = path[0].row
-                    let catLabel = categories[row].label
-                    let catColor = categories[row].color
-                    vc.label = catLabel!.uppercased()
-                    vc.colorOfSeparator = catColor!
+                if let path = collectionView?.indexPathsForSelectedItems {
+                    let category = categories[path[0].row]
+                    vc.currentCategory = category
                 }
             }
         }
     }
-    
 }
 
 // MARK: Collection View Extension
 
-extension UIViewController: UICollectionViewDataSource{
+extension WordsCollectionView: UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoriesCell
