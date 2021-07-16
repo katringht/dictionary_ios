@@ -7,9 +7,8 @@
 
 import UIKit
 
-
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     
@@ -22,18 +21,9 @@ class DetailViewController: UIViewController {
         return alertView!
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let cat = currentCategory {
-            categoryLabel.text = cat.label?.uppercased()
-            categoryLabel.textColor = cat.color
-            tableView.separatorColor = cat.color
-            
-            translate = DataManager.shared.fetchTransl(category: cat)
-            tableView.reloadData()
-        }
-
+        getAllTranslations()
         tableView?.dataSource = self
         tableView.delegate = self
         
@@ -44,18 +34,26 @@ class DetailViewController: UIViewController {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
-        
-        
-
     }
     
-// MARK: Gesture
+    // MARK: Fetching data
+    func getAllTranslations() {
+        if let cat = currentCategory {
+            categoryLabel.text = cat.label?.uppercased()
+            categoryLabel.textColor = cat.color
+            tableView.separatorColor = cat.color
+            
+            translate = DataManager.shared.fetchTransl(category: cat)
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: Gesture
     @objc func swipe(){
         navigationController?.popViewController(animated: true)
     }
-
-// MARK: Alert
     
+    // MARK: Alert
     func setAlert() {
         view.addSubview(alertView)
         alertView.center = view.center
@@ -79,7 +77,6 @@ class DetailViewController: UIViewController {
         } else if newTransl.isEmpty{
             alertView.alertField2.shakeAnimation()
         } else {
-            
             guard let cat = currentCategory else {
                 print("category not set")
                 return
@@ -97,8 +94,8 @@ class DetailViewController: UIViewController {
             
         }
     }
-
-// MARK: Buttons
+    
+    // MARK: Buttons
     @IBAction func addItemsButton(_ sender: Any) {
         setAlert()
         animations(alert: alertView)
@@ -107,16 +104,27 @@ class DetailViewController: UIViewController {
     @IBAction func backButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: Deleting
+    func deleteItem(item: Translation) {
+        let context = DataManager.shared.persistentContainer.viewContext
+        context.delete(item)
+        do {
+            try context.save()
+            getAllTranslations()
+        }
+        catch {
+            print("error")
+        }
+    }
 }
 
 // MARK: Table View Extension
-
 extension DetailViewController: UITableViewDataSource{
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return translate.count
-        
     }
-    
+
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordsCell") as! TableViewCell
         cell.setup(with: translate[indexPath.row])
@@ -132,15 +140,16 @@ extension DetailViewController: UITableViewDataSource{
 }
 
 extension DetailViewController: UITableViewDelegate{
-
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let item = translate[indexPath.row]
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "Delete", style: .destructive))
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteItem(item: item)
+        })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         present(ac, animated: true)
     }
-    
 }

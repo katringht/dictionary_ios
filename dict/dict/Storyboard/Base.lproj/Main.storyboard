@@ -70,9 +70,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" image="ellipsis" catalog="system"/>
-                                                    <connections>
-                                                        <action selector="changeBtn:" destination="CVE-sX-Nvp" eventType="touchUpInside" id="Z5X-R6-G1c"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" name="Color1"/>
@@ -88,6 +85,7 @@
                                         <size key="customSize" width="370" height="130"/>
                                         <connections>
                                             <outlet property="cell" destination="Bon-eb-Gec" id="XSa-Ld-TWr"/>
+                                            <outlet property="editButton" destination="yAI-0y-aKf" id="qXQ-SY-wFW"/>
                                             <outlet property="label" destination="iSa-8q-gvQ" id="frE-ui-JWS"/>
                                             <segue destination="iuh-7u-iCt" kind="show" id="bcW-SJ-ZcG"/>
                                         </connections>

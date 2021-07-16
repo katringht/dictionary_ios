@@ -10,6 +10,7 @@ import UIKit
 class CategoriesCell: UICollectionViewCell {
     @IBOutlet var label: UILabel!
     @IBOutlet var cell: UIView!
+    @IBOutlet var editButton: UIButton!
     
     func setup(with cat: Category) {
         label.text = cat.label
@@ -36,15 +37,9 @@ class CategoriesCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        // Improve scrolling performance with an explicit shadowPath
         layer.shadowPath = UIBezierPath(
             roundedRect: bounds,
             cornerRadius: cornerRadius
         ).cgPath
     }
-    
-    @IBAction func changeBtn(_ sender: Any) {
-    }
-    
 }

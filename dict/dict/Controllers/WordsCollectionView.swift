@@ -42,19 +42,13 @@ class WordsCollectionView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         setupBlurEffect(view: view)
     }
-    
-    func getRandomIdNumber() -> Int64 {
-        return Int64.random(in: 0...10000)
         
-    }
-    
     // MARK: Alert additions
     func setAlert() {
         view.addSubview(alertView)
         alertView.center = view.center
         alertView.alertCancelBtn.addTarget(self, action: #selector(closeAlert), for: .touchUpInside)
         alertView.alertOkBtn.addTarget(self, action: #selector(addCategory), for: .touchUpInside)
-        
     }
     
     @objc func closeAlert() {
@@ -97,7 +91,6 @@ class WordsCollectionView: UIViewController {
     }
     
     // MARK: Buttons from view
-    
     @IBAction func rightBarBtn(_ sender: Any) {
         print("tapped")
         setAlert()
@@ -116,6 +109,34 @@ class WordsCollectionView: UIViewController {
             }
         }
     }
+    
+// MARK: Edit categories
+    @objc func editCategory(sender: UIButton){
+        
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteCategory(sender: sender)
+        })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(ac, animated: true)
+    }
+    
+    func deleteCategory(sender: UIButton) {
+        let i = sender.tag
+        let category = categories[i]
+        
+        let context = DataManager.shared.persistentContainer.viewContext
+        context.delete(category)
+        collectionView.reloadData()
+        do {
+            try context.save()
+            categories.remove(at: i)
+        }
+        catch {
+            print("error")
+        }
+    }
 }
 
 // MARK: Collection View Extension
@@ -124,7 +145,11 @@ extension WordsCollectionView: UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoriesCell
-        cell.setup(with: categories[indexPath.row])
+        let cat = categories[indexPath.row]
+        cell.setup(with: cat)
+        
+        cell.editButton.tag = indexPath.row
+        cell.editButton.addTarget(self, action: #selector(editCategory), for: .touchUpInside)
         return cell
     }
     
@@ -132,4 +157,3 @@ extension WordsCollectionView: UICollectionViewDataSource{
         return categories.count
     }
 }
-
