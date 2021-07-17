@@ -9,7 +9,7 @@ import UIKit
 
 class RulesTableViewController: UITableViewController {
     
-    let rules = ["1", "3", "2"]
+    let rules = ["1", "4", "3", "2"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
